@@ -1,5 +1,10 @@
 ![image](https://github.com/nataliagiraldo/normalizacionbdd1/assets/131258170/1d5a8fc8-5969-49f9-a04a-c2876007dda5)
 
+
+
+
+
+
 Para normalizar una base de datos hasta la Cuarta Forma Normal (4FN), es importante comprender los conceptos y reglas de cada forma normal y aplicarlos a cada tabla de la base de datos. A continuación, voy a expandir la información proporcionada sobre cada entidad y explicar cómo se puede aplicar la normalización:
 
 1. Tabla "País":
@@ -1046,3 +1051,363 @@ mysql> SELECT
 | Madrid |                    2 |
 | París  |                    1 |
 +--------+----------------------+
+	
+	
+		
+				
+					
+				
+				The file is too large to render in Typora.
+				
+					Open in…
+					QuickLook
+				
+		
+	
+
+	
+	
+
+
+	
+		Cortar
+	
+	
+		Copiar
+	
+	
+		Pegar
+	
+
+
+
+	
+		Open Image Location…
+	
+	
+		Open Image in Browser…
+	
+	
+		Copy to %@
+	
+	
+		Copiar imagen a…
+	
+	
+		Move to %@
+	
+	
+		Rename or Move Image to…
+	
+	
+		Upload Image
+	
+	
+		Zoom Image 
+	
+	
+		Switch Image Syntax 
+	
+	
+		Delete Image File
+	
+	
+		Delete Image 
+	
+	
+
+	
+		Play
+	
+	
+		Pause
+	
+	
+
+	
+		Abrir enlaceCtrl+Click
+	
+	
+
+	
+	
+		Añadir al diccionario
+	
+	
+		Unlearn Spelling
+	
+	
+	
+	
+		EditarClick
+	
+	
+		
+			
+			
+			
+			
+		
+	
+	
+		Copy Link Address
+	
+	
+		Copy Emoji
+	
+	
+		Copy Image Content
+	
+	
+		Copiar / Pegar como… 
+	
+	
+		Copy Code Content
+	
+	
+		Auto Indent Selected Code
+	
+	
+		Auto Indent Whole Code
+	
+	
+		Save %@ As…
+	
+	
+	
+		
+	  
+	  
+	  
+	  
+	
+	
+	
+		
+	  
+	  
+	  
+	  
+	
+	
+	
+		
+	  
+	  
+	
+	
+	
+	
+		Tabla 
+	
+	
+		Párrafo 
+	
+	
+		Insertar 
+	
+	
+	
+		Delete Block
+	
+
+	
+	
+		Inspeccionar elemento
+	
+
+
+
+	Encabezado 1Ctrl+1
+	Encabezado 2Ctrl+2
+	Encabezado 3Ctrl+3
+	Encabezado 4Ctrl+4
+	Encabezado 5Ctrl+5
+	Encabezado 6Ctrl+6
+	
+	PárrafoCtrl+0
+
+
+	Copiar como MarkdownCtrl+Shift+C
+	Copiar como código HTML
+	Copy without Theme Styling
+	
+	Copy as Image
+	
+		Copiar a MS Word
+	
+	
+		Copiar como MathML
+	
+	
+		Copiar como TeX
+	
+	
+	Pegar como texto sin formatoCtrl+Shift+V
+
+
+
+	25%
+	33%
+	50%
+	67%
+	80%
+	
+	100%
+	
+	150%
+	200%
+
+
+
+	Markdown ![alt](src)
+	HTML <img src="src" alt="alt" />
+
+
+
+	
+		Insertar fila antes
+	
+	
+		Insertar fila despuésCtrl+Enter
+	
+	
+		Insertar columna antes
+	
+	
+		Insertar columna después
+	
+	
+	
+		Move Row UpAlt+↑
+	
+	
+		Move Row DownAlt+↓
+	
+	
+		Move Column LeftAlt+←
+	
+	
+		Move Column RightAlt+→
+	
+	
+	
+		Eliminar filaCtrl+Shift+Backspace
+	
+	
+		Eliminar columna
+	
+	
+	
+		Copiar tabla
+	
+	
+		Prettify Source Code
+	
+	
+	
+		Eliminar tabla
+	
+
+
+
+	
+
+
+
+	ImagenCtrl+Shift+I
+	
+	Notas al pie
+	Vincular referencia
+	Línea horizontal
+	TablaCtrl+ T
+	Bloque de códigoCtrl+Shift+K
+	Bloque de ecuacionesCtrl+Shift+M
+	Tabla de contenidos
+	Formateo de YAML
+	
+	Párrafo (antes)
+	Párrafo (después)
+
+
+
+	Highlight Current Header
+	
+	Filter
+	
+	Expand All
+	Collapse All
+	
+	Collapsible Outline
+	Flat Outline
+
+
+
+	Abrir
+	Abrir en una ventana nueva
+	Abrir en una ventana nueva
+
+	
+	Undo
+	
+	
+	Nuevo archivo
+	Nueva carpeta
+	
+	Buscar
+	
+	Articles (List View)
+	File Tree (Tree View)
+	
+	Renombrar
+	Duplicar
+	
+	Eliminar
+	
+	Properties
+	Copiar ruta de archivo
+	Abrir ubicación del archivo
+	
+	Expand All
+	Collapse All
+
+
+
+	Abrir
+	Abrir
+	
+	Abrir
+
+
+	
+	
+	
+	
+	
+	
+		
+			
+				
+					
+				
+				
+					
+						
+					
+					
+							
+									
+							
+					
+				
+				
+				
+			
+		
+	
+
+
+
+	
+	
+	
