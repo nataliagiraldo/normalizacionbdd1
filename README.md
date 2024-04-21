@@ -1,0 +1,1 @@
+# normalizacionbdd1
