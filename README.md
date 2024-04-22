@@ -1,103 +1,122 @@
 ![image](https://github.com/nataliagiraldo/normalizacionbdd1/assets/131258170/1d5a8fc8-5969-49f9-a04a-c2876007dda5)
 
-
-
-
-
-
 Para normalizar una base de datos hasta la Cuarta Forma Normal (4FN), es importante comprender los conceptos y reglas de cada forma normal y aplicarlos a cada tabla de la base de datos. A continuación, voy a expandir la información proporcionada sobre cada entidad y explicar cómo se puede aplicar la normalización:
 
 1. Tabla "País":
+
 - Está en 1FN, 2FN y 3FN, lo que significa que no tiene grupos repetitivos de datos, todos los valores son atómicos, no hay dependencias parciales en su clave primaria y no hay dependencias transitivas.
 - Para alcanzar la 4FN, debemos revisar si existen dependencias multivaluadas o dependencias de join en esta tabla y realizar ajustes en caso de ser necesario. Si no hay ninguna de estas dependencias, la tabla ya está en 4FN.
 
 2. Tabla "Región":
+
 - Igual que la tabla "País", está en 1FN, 2FN y 3FN.
 - Para la 4FN, se deben analizar las dependencias multivaluadas o de join que pudieran existir.
 
 3. Tabla "Ciudad":
+
 - Sigue el mismo patrón que las anteriores y está en 1FN, 2FN y 3FN.
 - Para la 4FN, se necesita examinar las dependencias multivaluadas o de join.
 
 4. Tabla "Dirección":
+
 - Al igual que las tablas anteriores, está en 1FN, 2FN y 3FN.
 - Es crucial verificar si hay dependencias multivaluadas o de join para avanzar hacia la 4FN.
 
 5. Tabla "Oficina":
+
 - Está en 1FN, 2FN y 3FN.
 - Se debe realizar una revisión detallada para detectar dependencias que pudieran afectar la 4FN.
 
 6. Tabla "Empleado":
+
 - Al igual que las anteriores, está en 1FN, 2FN y 3FN.
 - Se deben examinar posibles dependencias multivaluadas o de join.
 
 7. Tabla "Puesto":
+
 - Está en 1FN, 2FN y 3FN.
 - Revisar si existen dependencias multivaluadas o de join para avanzar hacia la 4FN.
 
 8. Tabla "Cliente":
+
 - También está en 1FN, 2FN y 3FN.
 - Es necesario examinar las dependencias multivaluadas o de join.
 
 9. Tabla "Proveedor":
+
 - Está en 1FN, 2FN y 3FN.
 - Revisar si hay dependencias multivaluadas o de join.
 
 10. Tabla "Tipo Teléfono":
+
 - Está en 1FN, 2FN y 3FN.
 - Se debe verificar la presencia de dependencias multivaluadas o de join.
 
 11. Tabla "Teléfono":
+
 - Al igual que las anteriores, está en 1FN, 2FN y 3FN.
 - Se debe examinar si existen dependencias multivaluadas o de join.
 
 12. Tabla "Tipo Pago":
+
 - Está en 1FN, 2FN y 3FN.
 - Es importante verificar si hay dependencias multivaluadas o de join.
 
 13. Tabla "Pago":
+
 - Está en 1FN, 2FN y 3FN.
 - Revisar si existen dependencias multivaluadas o de join.
 
 14. Tabla "Contacto":
+
 - Está en 1FN, 2FN y 3FN.
 - Se debe examinar la presencia de dependencias multivaluadas o de join.
 
 15. Tabla "Estado Pedido":
+
 - Está en 1FN, 2FN y 3FN.
 - Revisar si hay dependencias multivaluadas o de join.
 
 16. Tabla "Gama Producto":
+
 - Está en 1FN, 2FN y 3FN.
 - Es importante verificar si existen dependencias multivaluadas o de join.
 
 17. Tabla "Dimensiones":
+
 - Está en 1FN, 2FN y 3FN.
 - Se debe examinar la presencia de dependencias multivaluadas o de join.
 
 18. Tabla "Producto":
+
 - Está en 1FN, 2FN y 3FN.
 - Revisar si existen dependencias multivaluadas o de join.
 
 19. Tabla "Inventario":
+
 - Está en 1FN, 2FN y 3FN.
 - Es importante verificar si hay dependencias multivaluadas o de join.
 
 20. Tabla "Pedido":
+
 - Está en 1FN, 2FN y 3FN.
 - Revisar si existen dependencias multivaluadas o de join.
 
 21. Tabla "Detalle Pedido":
+
 - Está en 1FN, 2FN y 3FN.
 - Se debe examinar la presencia de dependencias multivaluadas o de join.
 
 22. Tabla "Comentarios":
+
 - Está en 1FN, 2FN y 3FN.
 - Revisar si hay dependencias multivaluadas o de join.
 
 Una vez se hayan identificado las dependencias multivaluadas o de join en cada tabla, se pueden aplicar las técnicas de normalización adecuadas para llevarlas a la Cuarta Forma Normal. Esto puede implicar la creación de nuevas tablas y la redefinición de las relaciones entre ellas para eliminar las dependencias problemáticas.
 
+```mysql
 Consultas sobre una tabla
+
 1. Devuelve un listado con el código de oficina y la ciudad donde hay oficinas.
 
 mysql> SELECT oficina.id, ciudad.nombre 
@@ -128,7 +147,7 @@ mysql>  SELECT oficina.id, ciudad.nombre, oficina.telefono
 +----+--------+----------+
 
 3. Devuelve un listado con el nombre, apellidos y email de los empleados cuyo
-jefe tiene un código de jefe igual a 7.
+   jefe tiene un código de jefe igual a 7.
 
 mysql> SELECT e.nombre, e.apellido1, e.apellido2, e.email 
     -> FROM empleado AS e
@@ -141,7 +160,7 @@ mysql> SELECT e.nombre, e.apellido1, e.apellido2, e.email
 +--------+-----------+------------+-----------------------------+
 
 4. Devuelve el nombre del puesto, nombre, apellidos y email del jefe de la
-empresa.
+   empresa.
 
 mysql> SELECT puesto.nombre AS puesto, empleado.nombre, empleado.apellido1, empleado.apellido2, empleado.email 
     -> FROM empleado
@@ -154,7 +173,7 @@ mysql> SELECT puesto.nombre AS puesto, empleado.nombre, empleado.apellido1, empl
 +---------+--------+-----------+-----------+------------------------+
 
 5. Devuelve un listado con el nombre, apellidos y puesto de aquellos
-empleados que no sean representantes de ventas.
+   empleados que no sean representantes de ventas.
 
 mysql> SELECT puesto.nombre AS puesto, empleado.nombre, empleado.apellido1, empleado.apellido2
     -> FROM empleado
@@ -169,21 +188,21 @@ mysql> SELECT puesto.nombre AS puesto, empleado.nombre, empleado.apellido1, empl
 +---------------+--------+-----------+------------+
 
 6. Devuelve un listado con el nombre de los todos los clientes españoles.
-mysql> SELECT cliente.nombre
+   mysql> SELECT cliente.nombre
     -> FROM cliente 
     -> INNER JOIN direccion ON cliente.id_direccion = direccion.id
     -> INNER JOIN ciudad ON direccion.id_ciudad = ciudad.id
     -> INNER JOIN region ON ciudad.id_region = region.id
     -> INNER JOIN pais ON region.id_pais = pais.id
     -> WHERE pais.nombre = 'España';
-+-----------+
-| nombre    |
-+-----------+
-| Cliente 1 |
-+-----------+
+   +-----------+
+   | nombre    |
+   +-----------+
+   | Cliente 1 |
+   +-----------+
 
 7. Devuelve un listado con los distintos estados por los que puede pasar un
-pedido.
+   pedido.
 
 mysql> SELECT descripcion
     -> FROM estado_pedido;
@@ -197,11 +216,11 @@ mysql> SELECT descripcion
 
 
 8. Devuelve un listado con el código de cliente de aquellos clientes que
-realizaron algún pago en 2008. Tenga en cuenta que deberá eliminar
-aquellos códigos de cliente que aparezcan repetidos. Resuelva la consulta:
-• Utilizando la función YEAR de MySQL.
-• Utilizando la función DATE_FORMAT de MySQL.
-• Sin utilizar ninguna de las funciones anteriores.
+   realizaron algún pago en 2008. Tenga en cuenta que deberá eliminar
+   aquellos códigos de cliente que aparezcan repetidos. Resuelva la consulta:
+   • Utilizando la función YEAR de MySQL.
+   • Utilizando la función DATE_FORMAT de MySQL.
+   • Sin utilizar ninguna de las funciones anteriores.
 
 mysql> SELECT DISTINCT cliente.id
     -> FROM cliente
@@ -223,20 +242,20 @@ mysql> SELECT DISTINCT cliente.id
 Empty set (0.00 sec)
 
 9. Devuelve un listado con el código de pedido, código de cliente, fecha
-esperada y fecha de entrega de los pedidos que no han sido entregados a
-tiempo.
-mysql> SELECT id AS 'Código de Pedido', id_cliente AS 'Código de Cliente', fecha_esperada AS 'Fecha Esperada', fecha_entrega AS 'Fecha de Entrega'
+   esperada y fecha de entrega de los pedidos que no han sido entregados a
+   tiempo.
+   mysql> SELECT id AS 'Código de Pedido', id_cliente AS 'Código de Cliente', fecha_esperada AS 'Fecha Esperada', fecha_entrega AS 'Fecha de Entrega'
     -> FROM pedido
     -> WHERE fecha_entrega > fecha_esperada;
-Empty set (0.06 sec)
+   Empty set (0.06 sec)
 
 10. Devuelve un listado con el código de pedido, código de cliente, fecha
-esperada y fecha de entrega de los pedidos cuya fecha de entrega ha sido al
-menos dos días antes de la fecha esperada.
-• Utilizando la función ADDDATE de MySQL.
-• Utilizando la función DATEDIFF de MySQL.
-• ¿Sería posible resolver esta consulta utilizando el operador de suma + o
-resta -?
+    esperada y fecha de entrega de los pedidos cuya fecha de entrega ha sido al
+    menos dos días antes de la fecha esperada.
+    • Utilizando la función ADDDATE de MySQL.
+    • Utilizando la función DATEDIFF de MySQL.
+    • ¿Sería posible resolver esta consulta utilizando el operador de suma + o
+    resta -?
 
 SELECT id AS 'Código de Pedido', id_cliente AS 'Código de Cliente', fecha_esperada AS 'Fecha Esperada', fecha_entrega AS 'Fecha de Entrega'
 FROM pedido
@@ -259,7 +278,7 @@ JOIN estado_pedido ON pedido.id_estado_pedido = estado_pedido.id
 WHERE estado_pedido.descripcion = 'rechazado' AND YEAR(pedido.fecha_pedido) = 2009;
 
 12. Devuelve un listado de todos los pedidos que han sido entregados en el
-mes de enero de cualquier año.
+    mes de enero de cualquier año.
 
 SELECT id AS 'Código de Pedido', id_cliente AS 'Código de Cliente', fecha_esperada AS 'Fecha Esperada', fecha_entrega AS 'Fecha de Entrega'
 FROM pedido
@@ -267,7 +286,7 @@ WHERE MONTH(fecha_entrega) = 1;
 
 
 13. Devuelve un listado con todos los pagos que se realizaron en el
-año 2008 mediante Paypal. Ordene el resultado de mayor a menor.
+    año 2008 mediante Paypal. Ordene el resultado de mayor a menor.
 
 SELECT *
 FROM pago
@@ -279,8 +298,8 @@ WHERE YEAR(fecha) = 2008 AND id_tipo_pago = (
 ORDER BY total DESC;
 
 14. Devuelve un listado con todas las formas de pago que aparecen en la
-tabla pago. Tenga en cuenta que no deben aparecer formas de pago
-repetidas.
+    tabla pago. Tenga en cuenta que no deben aparecer formas de pago
+    repetidas.
 
 mysql> SELECT DISTINCT descripcion
     -> FROM tipo_pago
@@ -295,9 +314,9 @@ mysql> SELECT DISTINCT descripcion
 
 
 15. Devuelve un listado con todos los productos que pertenecen a la
-gama Ornamentales y que tienen más de 100 unidades en stock. El listado
-deberá estar ordenado por su precio de venta, mostrando en primer lugar
-los de mayor precio.
+    gama Ornamentales y que tienen más de 100 unidades en stock. El listado
+    deberá estar ordenado por su precio de venta, mostrando en primer lugar
+    los de mayor precio.
 
 SELECT producto.id, producto.nombre, producto.precio_venta, inventario.stock
 FROM producto
@@ -308,7 +327,7 @@ ORDER BY producto.precio_venta DESC;
 
 
 16. Devuelve un listado con todos los clientes que sean de la ciudad de Madrid y
-cuyo representante de ventas tenga el código de empleado 11 o 30.
+    cuyo representante de ventas tenga el código de empleado 11 o 30.
 
 
 mysql> SELECT cliente.id, cliente.nombre
@@ -326,8 +345,9 @@ mysql> SELECT cliente.id, cliente.nombre
 Consultas multitabla (Composición interna)
 Resuelva todas las consultas utilizando la sintaxis de SQL1 y SQL2. Las consultas con
 sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
+
 1. Obtén un listado con el nombre de cada cliente y el nombre y apellido de su
-representante de ventas.
+   representante de ventas.
 
 mysql> SELECT c.nombre AS 'Nombre Cliente', e.nombre AS 'Nombre Representante', e.apellido1 AS 'Apellido Representante'
     -> FROM cliente c
@@ -339,8 +359,9 @@ mysql> SELECT c.nombre AS 'Nombre Cliente', e.nombre AS 'Nombre Representante', 
 | Cliente 1      | Juan                 | Pérez                  |
 | Cliente 2      | Juan                 | Pérez                  |
 +----------------+----------------------+------------------------+
+
 2. Muestra el nombre de los clientes que hayan realizado pagos junto con el
-nombre de sus representantes de ventas.
+   nombre de sus representantes de ventas.
 
 mysql> SELECT DISTINCT c.nombre AS 'Nombre Cliente', e.nombre AS 'Nombre Representante'
     -> FROM cliente c
@@ -353,8 +374,9 @@ mysql> SELECT DISTINCT c.nombre AS 'Nombre Cliente', e.nombre AS 'Nombre Represe
 | Cliente 1      | Juan                 |
 | Cliente 2      | Juan                 |
 +----------------+----------------------+
+
 3. Muestra el nombre de los clientes que no hayan realizado pagos junto con
-el nombre de sus representantes de ventas.
+   el nombre de sus representantes de ventas.
 
 SELECT c.nombre AS 'Nombre Cliente', e.nombre AS 'Nombre Representante'
 FROM cliente c
@@ -364,8 +386,8 @@ JOIN empleado e ON r.jefe = e.id
 WHERE p.id IS NULL;
 
 4. Devuelve el nombre de los clientes que han hecho pagos y el nombre de sus
-representantes junto con la ciudad de la oficina a la que pertenece el
-representante.
+   representantes junto con la ciudad de la oficina a la que pertenece el
+   representante.
 
 mysql> SELECT c.nombre AS 'Nombre Cliente', e.nombre AS 'Nombre Representante', ciu.nombre AS 'Ciudad Representante'
     -> FROM cliente c
@@ -383,8 +405,8 @@ mysql> SELECT c.nombre AS 'Nombre Cliente', e.nombre AS 'Nombre Representante', 
 +----------------+----------------------+----------------------+
 
 5. Devuelve el nombre de los clientes que no hayan hecho pagos y el nombre
-de sus representantes junto con la ciudad de la oficina a la que pertenece el
-representante.
+   de sus representantes junto con la ciudad de la oficina a la que pertenece el
+   representante.
 
 SELECT c.nombre AS 'Nombre Cliente', e.nombre AS 'Nombre Representante', ciu.nombre AS 'Ciudad Representante'
 FROM cliente c
@@ -405,7 +427,7 @@ JOIN cliente cl ON d.id = cl.id_direccion
 WHERE c.nombre = 'Fuenlabrada';
 
 7. Devuelve el nombre de los clientes y el nombre de sus representantes junto
-con la ciudad de la oficina a la que pertenece el representante.
+   con la ciudad de la oficina a la que pertenece el representante.
 
 mysql> SELECT c.nombre AS 'Nombre Cliente', e.nombre AS 'Nombre Representante', ciu.nombre AS 'Ciudad Representante'
     -> FROM cliente c
@@ -422,7 +444,7 @@ mysql> SELECT c.nombre AS 'Nombre Cliente', e.nombre AS 'Nombre Representante', 
 +----------------+----------------------+----------------------+
 
 8. Devuelve un listado con el nombre de los empleados junto con el nombre
-de sus jefes.
+   de sus jefes.
 
 mysql> SELECT e1.nombre AS 'Nombre Empleado', e2.nombre AS 'Nombre Jefe'
     -> FROM empleado e1
@@ -436,7 +458,7 @@ mysql> SELECT e1.nombre AS 'Nombre Empleado', e2.nombre AS 'Nombre Jefe'
 +-----------------+-------------+
 
 9. Devuelve un listado que muestre el nombre de cada empleados, el nombre
-de su jefe y el nombre del jefe de sus jefe.
+   de su jefe y el nombre del jefe de sus jefe.
 
 mysql> SELECT e1.nombre AS 'Nombre Empleado', e2.nombre AS 'Nombre Jefe', e3.nombre AS 'Nombre Jefe del Jefe'
     -> FROM empleado e1
@@ -449,8 +471,9 @@ mysql> SELECT e1.nombre AS 'Nombre Empleado', e2.nombre AS 'Nombre Jefe', e3.nom
 | María           | Juan        | NULL                 |
 | Carlos          | Juan        | NULL                 |
 +-----------------+-------------+----------------------+
+
 10. Devuelve el nombre de los clientes a los que no se les ha entregado a
-tiempo un pedido.
+    tiempo un pedido.
 
 
 mysql> SELECT DISTINCT c.nombre AS 'Nombre Cliente'
@@ -467,7 +490,7 @@ mysql> SELECT DISTINCT c.nombre AS 'Nombre Cliente'
 
 
 11. Devuelve un listado de las diferentes gamas de producto que ha comprado
-cada cliente.
+    cada cliente.
 
 mysql> SELECT c.nombre AS 'Nombre Cliente', GROUP_CONCAT(DISTINCT gp.descripcion_txt SEPARATOR ', ') AS 'Gamas de Producto Compradas'
     -> FROM cliente c
@@ -486,8 +509,9 @@ mysql> SELECT c.nombre AS 'Nombre Cliente', GROUP_CONCAT(DISTINCT gp.descripcion
 Consultas multitabla (Composición externa)
 Resuelva todas las consultas utilizando las cláusulas LEFT JOIN, RIGHT JOIN, NATURAL
 LEFT JOIN y NATURAL RIGHT JOIN.
+
 1. Devuelve un listado que muestre solamente los clientes que no han
-realizado ningún pago.
+   realizado ningún pago.
 
 SELECT c.nombre AS 'Nombre Cliente'
 FROM cliente c
@@ -495,7 +519,7 @@ LEFT JOIN pago p ON c.id = p.id_cliente
 WHERE p.id IS NULL;
 
 2. Devuelve un listado que muestre solamente los clientes que no han
-realizado ningún pedido.
+   realizado ningún pedido.
 
 SELECT c.nombre AS 'Nombre Cliente'
 FROM cliente c
@@ -503,7 +527,7 @@ LEFT JOIN pedido p ON c.id = p.id_cliente
 WHERE p.id IS NULL;
 
 3. Devuelve un listado que muestre los clientes que no han realizado ningún
-pago y los que no han realizado ningún pedido.
+   pago y los que no han realizado ningún pedido.
 
 
 SELECT c.nombre AS 'Nombre Cliente', 'Sin Pagos' AS 'Estado'
@@ -519,21 +543,21 @@ LEFT JOIN pedido pd ON c.id = pd.id_cliente
 WHERE pd.id IS NULL;
 
 4. Devuelve un listado que muestre solamente los empleados que no tienen
-una oficina asociada.
+   una oficina asociada.
 
 SELECT nombre AS 'Nombre Empleado'
 FROM empleado
 WHERE id_oficina IS NULL;
 
 5. Devuelve un listado que muestre solamente los empleados que no tienen un
-cliente asociado.
+   cliente asociado.
 
 SELECT nombre AS 'Nombre Empleado'
 FROM empleado
 WHERE id NOT IN (SELECT id_empleado FROM cliente);
 
 6. Devuelve un listado que muestre solamente los empleados que no tienen un
-cliente asociado junto con los datos de la oficina donde trabajan.
+   cliente asociado junto con los datos de la oficina donde trabajan.
 
 SELECT e.nombre AS 'Nombre Empleado', o.*
 FROM empleado e
@@ -541,7 +565,7 @@ JOIN oficina o ON e.id_oficina = o.id
 WHERE e.id NOT IN (SELECT id_empleado FROM cliente);
 
 7. Devuelve un listado que muestre los empleados que no tienen una oficina
-asociada y los que no tienen un cliente asociado.
+   asociada y los que no tienen un cliente asociado.
 
 
 SELECT nombre AS 'Nombre Empleado', 'Sin Oficina' AS 'Estado'
@@ -556,15 +580,15 @@ FROM empleado
 WHERE id NOT IN (SELECT id_empleado FROM cliente);
 
 8. Devuelve un listado de los productos que nunca han aparecido en un
-pedido.
+   pedido.
 
 SELECT *
 FROM producto
 WHERE id NOT IN (SELECT id_producto FROM detalle_pedido);
 
 9. Devuelve un listado de los productos que nunca han aparecido en un
-pedido. El resultado debe mostrar el nombre, la descripción y la imagen del
-producto.
+   pedido. El resultado debe mostrar el nombre, la descripción y la imagen del
+   producto.
 
 SELECT nombre, descripcion, imagen
 FROM producto
@@ -572,8 +596,8 @@ WHERE id NOT IN (SELECT id_producto FROM detalle_pedido);
 
 
 10. Devuelve las oficinas donde no trabajan ninguno de los empleados que
-hayan sido los representantes de ventas de algún cliente que haya realizado
-la compra de algún producto de la gama Frutales.
+    hayan sido los representantes de ventas de algún cliente que haya realizado
+    la compra de algún producto de la gama Frutales.
 
 mysql> SELECT DISTINCT o.*
     -> FROM oficina o
@@ -595,8 +619,9 @@ mysql> SELECT DISTINCT o.*
 |  2 |            2 |     NULL |
 |  3 |            3 |     NULL |
 +----+--------------+----------+
+
 11. Devuelve un listado con los clientes que han realizado algún pedido pero no
-han realizado ningún pago.
+    han realizado ningún pago.
 
 SELECT c.nombre AS 'Nombre Cliente'
 FROM cliente c
@@ -604,7 +629,7 @@ WHERE c.id IN (SELECT id_cliente FROM pedido)
   AND c.id NOT IN (SELECT id_cliente FROM pago);
 
 12. Devuelve un listado con los datos de los empleados que no tienen clientes
-asociados y el nombre de su jefe asociado.
+    asociados y el nombre de su jefe asociado.
 
 SELECT e.nombre AS 'Nombre Empleado', e.apellido1 AS 'Apellido Empleado', e.apellido2 AS 'Segundo Apellido Empleado', j.nombre AS 'Nombre Jefe', j.apellido1 AS 'Apellido Jefe', j.apellido2 AS 'Segundo Apellido Jefe'
 FROM empleado e
@@ -612,6 +637,7 @@ LEFT JOIN empleado j ON e.jefe = j.id
 WHERE e.id NOT IN (SELECT id_empleado FROM cliente);
 
 Consultas resumen
+
 1. ¿Cuántos empleados hay en la compañía?
 
 mysql> SELECT COUNT(*) AS 'Total Empleados'
@@ -621,6 +647,7 @@ mysql> SELECT COUNT(*) AS 'Total Empleados'
 +-----------------+
 |               3 |
 +-----------------+
+
 2. ¿Cuántos clientes tiene cada país?
 
 mysql> SELECT p.nombre AS 'País', COUNT(c.id) AS 'Total Clientes'
@@ -645,7 +672,7 @@ FROM pago
 WHERE YEAR(fecha) = 2009;
 
 4. ¿Cuántos pedidos hay en cada estado? Ordena el resultado de forma
-descendente por el número de pedidos.
+   descendente por el número de pedidos.
 
 mysql> SELECT estado_pedido.descripcion AS 'Estado', COUNT(pedido.id) AS 'Número de Pedidos'
     -> FROM estado_pedido
@@ -659,8 +686,9 @@ mysql> SELECT estado_pedido.descripcion AS 'Estado', COUNT(pedido.id) AS 'Númer
 | Entregado  |                  1 |
 | Cancelado  |                  0 |
 +------------+--------------------+
+
 5. Calcula el precio de venta del producto más caro y más barato en una
-misma consulta.
+   misma consulta.
 
 mysql> SELECT 
     ->     MAX(precio_venta) AS 'Precio Más Caro',
@@ -681,6 +709,7 @@ mysql> SELECT COUNT(*) AS 'Número de Clientes'
 +---------------------+
 |                   3 |
 +---------------------+
+
 7. ¿Cuántos clientes existen con domicilio en la ciudad de Madrid?
 
 
@@ -696,7 +725,7 @@ mysql> SELECT COUNT(*) AS 'Clientes en Madrid'
 +--------------------+
 
 8. ¿Calcula cuántos clientes tiene cada una de las ciudades que empiezan
-por M?
+   por M?
 
 
 mysql> SELECT ci.nombre AS 'Ciudad', COUNT(c.id) AS 'Total Clientes'
@@ -712,7 +741,7 @@ mysql> SELECT ci.nombre AS 'Ciudad', COUNT(c.id) AS 'Total Clientes'
 +--------+----------------+
 
 9. Devuelve el nombre de los representantes de ventas y el número de clientes
-al que atiende cada uno.
+   al que atiende cada uno.
 
 mysql> SELECT e.nombre AS 'Representante de Ventas', COUNT(c.id) AS 'Número de Clientes'
     -> FROM empleado e
@@ -726,7 +755,7 @@ mysql> SELECT e.nombre AS 'Representante de Ventas', COUNT(c.id) AS 'Número de 
 +-------------------------+---------------------+
 
 10. Calcula el número de clientes que no tiene asignado representante de
-ventas.
+    ventas.
 
 mysql> SELECT COUNT(*) AS 'Clientes sin Representante'
     -> FROM cliente
@@ -738,7 +767,7 @@ mysql> SELECT COUNT(*) AS 'Clientes sin Representante'
 +----------------------------+
 
 11. Calcula la fecha del primer y último pago realizado por cada uno de los
-clientes. El listado deberá mostrar el nombre y los apellidos de cada cliente.
+    clientes. El listado deberá mostrar el nombre y los apellidos de cada cliente.
 
 mysql> SELECT 
     ->     c.nombre AS 'Nombre Cliente',
@@ -757,8 +786,9 @@ mysql> SELECT
 | Cliente 2      | 2023-02-20  | 2023-02-20   |
 | Cliente 3      | 2023-03-10  | 2023-03-10   |
 +----------------+-------------+--------------+
+
 12. Calcula el número de productos diferentes que hay en cada uno de los
-pedidos.
+    pedidos.
 
 mysql> SELECT id_pedido, COUNT(DISTINCT id_producto) AS 'Número de Productos'
     -> FROM detalle_pedido
@@ -772,7 +802,7 @@ mysql> SELECT id_pedido, COUNT(DISTINCT id_producto) AS 'Número de Productos'
 +-----------+----------------------+
 
 13. Calcula la suma de la cantidad total de todos los productos que aparecen en
-cada uno de los pedidos.
+    cada uno de los pedidos.
 
 mysql> SELECT id_pedido, SUM(cantidad) AS 'Cantidad Total'
     -> FROM detalle_pedido
@@ -784,9 +814,10 @@ mysql> SELECT id_pedido, SUM(cantidad) AS 'Cantidad Total'
 |         2 |              1 |
 |         3 |              3 |
 +-----------+----------------+
+
 14. Devuelve un listado de los 20 productos más vendidos y el número total de
-unidades que se han vendido de cada uno. El listado deberá estar ordenado
-por el número total de unidades vendidas.
+    unidades que se han vendido de cada uno. El listado deberá estar ordenado
+    por el número total de unidades vendidas.
 
 mysql> SELECT 
     ->     dp.id_producto,
@@ -810,10 +841,10 @@ mysql> SELECT
 +-------------+-----------------+-------------------------+
 
 15. La facturación que ha tenido la empresa en toda la historia, indicando la
-base imponible, el IVA y el total facturado. La base imponible se calcula
-sumando el coste del producto por el número de unidades vendidas de la
-tabla detalle_pedido. El IVA es el 21 % de la base imponible, y el total la
-suma de los dos campos anteriores.
+    base imponible, el IVA y el total facturado. La base imponible se calcula
+    sumando el coste del producto por el número de unidades vendidas de la
+    tabla detalle_pedido. El IVA es el 21 % de la base imponible, y el total la
+    suma de los dos campos anteriores.
 
 mysql> SELECT 
     ->     SUM(dp.precio_unidad * dp.cantidad) AS 'Base Imponible',
@@ -828,7 +859,7 @@ mysql> SELECT
 +----------------+------+-----------------+
 
 16. La misma información que en la pregunta anterior, pero agrupada por
-código de producto.
+    código de producto.
 
 mysql> SELECT 
     ->     dp.id_producto AS 'Código de Producto',
@@ -848,7 +879,7 @@ mysql> SELECT
 +---------------------+----------------+------+-----------------+
 
 17. La misma información que en la pregunta anterior, pero agrupada por
-código de producto filtrada por los códigos que empiecen por OR
+    código de producto filtrada por los códigos que empiecen por OR
 
 mysql> SELECT 
     ->     dp.id_producto AS 'Código de Producto',
@@ -874,8 +905,8 @@ mysql> SELECT
 +---------------------+----------------+------+-----------------+
 
 18. Lista las ventas totales de los productos que hayan facturado más de 3000
-euros. Se mostrará el nombre, unidades vendidas, total facturado y total
-facturado con impuestos (21% IVA).
+    euros. Se mostrará el nombre, unidades vendidas, total facturado y total
+    facturado con impuestos (21% IVA).
 
 SELECT 
     p.nombre AS 'Nombre del Producto',
@@ -892,7 +923,7 @@ HAVING
     SUM(dp.precio_unidad * dp.cantidad) > 3000;
 
 19. Muestre la suma total de todos los pagos que se realizaron para cada uno
-de los años que aparecen en la tabla pagos.
+    de los años que aparecen en la tabla pagos.
 
 mysql> SELECT YEAR(fecha) AS 'Año', SUM(total) AS 'Total Pagado'
     -> FROM pago
@@ -904,9 +935,10 @@ mysql> SELECT YEAR(fecha) AS 'Año', SUM(total) AS 'Total Pagado'
 +------+--------------+
 
 Consultas variadas
+
 1. Devuelve el listado de clientes indicando el nombre del cliente y cuántos
-pedidos ha realizado. Tenga en cuenta que pueden existir clientes que no
-han realizado ningún pedido.
+   pedidos ha realizado. Tenga en cuenta que pueden existir clientes que no
+   han realizado ningún pedido.
 
 mysql> SELECT 
     ->     c.nombre AS 'Nombre del Cliente',
@@ -926,8 +958,8 @@ mysql> SELECT
 +--------------------+---------------------+
 
 2. Devuelve un listado con los nombres de los clientes y el total pagado por
-cada uno de ellos. Tenga en cuenta que pueden existir clientes que no han
-realizado ningún pago.
+   cada uno de ellos. Tenga en cuenta que pueden existir clientes que no han
+   realizado ningún pago.
 
 mysql> SELECT 
     ->     c.nombre AS 'Nombre del Cliente',
@@ -945,8 +977,9 @@ mysql> SELECT
 | Cliente 2          |       200.75 |
 | Cliente 3          |       150.25 |
 +--------------------+--------------+
+
 3. Devuelve el nombre de los clientes que hayan hecho pedidos en 2008
-ordenados alfabéticamente de menor a mayor.
+   ordenados alfabéticamente de menor a mayor.
 
 SELECT DISTINCT
     c.nombre AS 'Nombre del Cliente'
@@ -960,9 +993,9 @@ ORDER BY
     c.nombre ASC;
 
 4. Devuelve el nombre del cliente, el nombre y primer apellido de su
-representante de ventas y el número de teléfono de la oficina del
-representante de ventas, de aquellos clientes que no hayan realizado ningún
-pago.
+   representante de ventas y el número de teléfono de la oficina del
+   representante de ventas, de aquellos clientes que no hayan realizado ningún
+   pago.
 
 SELECT 
     c.nombre AS 'Nombre del Cliente',
@@ -982,8 +1015,8 @@ WHERE
     p.id IS NULL;
 
 5. Devuelve el listado de clientes donde aparezca el nombre del cliente, el
-nombre y primer apellido de su representante de ventas y la ciudad donde
-está su oficina.
+   nombre y primer apellido de su representante de ventas y la ciudad donde
+   está su oficina.
 
 mysql> SELECT 
     ->     c.nombre AS 'Nombre del Cliente',
@@ -1008,7 +1041,7 @@ mysql> SELECT
 +--------------------+--------------------------+----------------------+
 
 6. Devuelve el nombre, apellidos, puesto y teléfono de la oficina de aquellos
-empleados que no sean representante de ventas de ningún cliente.
+   empleados que no sean representante de ventas de ningún cliente.
 
 SELECT 
     e.nombre AS 'Nombre del Empleado',
@@ -1030,7 +1063,7 @@ WHERE
     OR c.id_empleado = '';
 
 7. Devuelve un listado indicando todas las ciudades donde hay oficinas y el
-número de empleados que tiene.
+   número de empleados que tiene.
 
 mysql> SELECT 
     ->     ci.nombre AS 'Ciudad',
@@ -1051,363 +1084,10 @@ mysql> SELECT
 | Madrid |                    2 |
 | París  |                    1 |
 +--------+----------------------+
-	
-	
-		
-				
-					
-				
-				The file is too large to render in Typora.
-				
-					Open in…
-					QuickLook
-				
-		
-	
-
-	
-	
 
 
-	
-		Cortar
-	
-	
-		Copiar
-	
-	
-		Pegar
-	
+```
 
 
 
-	
-		Open Image Location…
-	
-	
-		Open Image in Browser…
-	
-	
-		Copy to %@
-	
-	
-		Copiar imagen a…
-	
-	
-		Move to %@
-	
-	
-		Rename or Move Image to…
-	
-	
-		Upload Image
-	
-	
-		Zoom Image 
-	
-	
-		Switch Image Syntax 
-	
-	
-		Delete Image File
-	
-	
-		Delete Image 
-	
-	
 
-	
-		Play
-	
-	
-		Pause
-	
-	
-
-	
-		Abrir enlaceCtrl+Click
-	
-	
-
-	
-	
-		Añadir al diccionario
-	
-	
-		Unlearn Spelling
-	
-	
-	
-	
-		EditarClick
-	
-	
-		
-			
-			
-			
-			
-		
-	
-	
-		Copy Link Address
-	
-	
-		Copy Emoji
-	
-	
-		Copy Image Content
-	
-	
-		Copiar / Pegar como… 
-	
-	
-		Copy Code Content
-	
-	
-		Auto Indent Selected Code
-	
-	
-		Auto Indent Whole Code
-	
-	
-		Save %@ As…
-	
-	
-	
-		
-	  
-	  
-	  
-	  
-	
-	
-	
-		
-	  
-	  
-	  
-	  
-	
-	
-	
-		
-	  
-	  
-	
-	
-	
-	
-		Tabla 
-	
-	
-		Párrafo 
-	
-	
-		Insertar 
-	
-	
-	
-		Delete Block
-	
-
-	
-	
-		Inspeccionar elemento
-	
-
-
-
-	Encabezado 1Ctrl+1
-	Encabezado 2Ctrl+2
-	Encabezado 3Ctrl+3
-	Encabezado 4Ctrl+4
-	Encabezado 5Ctrl+5
-	Encabezado 6Ctrl+6
-	
-	PárrafoCtrl+0
-
-
-	Copiar como MarkdownCtrl+Shift+C
-	Copiar como código HTML
-	Copy without Theme Styling
-	
-	Copy as Image
-	
-		Copiar a MS Word
-	
-	
-		Copiar como MathML
-	
-	
-		Copiar como TeX
-	
-	
-	Pegar como texto sin formatoCtrl+Shift+V
-
-
-
-	25%
-	33%
-	50%
-	67%
-	80%
-	
-	100%
-	
-	150%
-	200%
-
-
-
-	Markdown ![alt](src)
-	HTML <img src="src" alt="alt" />
-
-
-
-	
-		Insertar fila antes
-	
-	
-		Insertar fila despuésCtrl+Enter
-	
-	
-		Insertar columna antes
-	
-	
-		Insertar columna después
-	
-	
-	
-		Move Row UpAlt+↑
-	
-	
-		Move Row DownAlt+↓
-	
-	
-		Move Column LeftAlt+←
-	
-	
-		Move Column RightAlt+→
-	
-	
-	
-		Eliminar filaCtrl+Shift+Backspace
-	
-	
-		Eliminar columna
-	
-	
-	
-		Copiar tabla
-	
-	
-		Prettify Source Code
-	
-	
-	
-		Eliminar tabla
-	
-
-
-
-	
-
-
-
-	ImagenCtrl+Shift+I
-	
-	Notas al pie
-	Vincular referencia
-	Línea horizontal
-	TablaCtrl+ T
-	Bloque de códigoCtrl+Shift+K
-	Bloque de ecuacionesCtrl+Shift+M
-	Tabla de contenidos
-	Formateo de YAML
-	
-	Párrafo (antes)
-	Párrafo (después)
-
-
-
-	Highlight Current Header
-	
-	Filter
-	
-	Expand All
-	Collapse All
-	
-	Collapsible Outline
-	Flat Outline
-
-
-
-	Abrir
-	Abrir en una ventana nueva
-	Abrir en una ventana nueva
-
-	
-	Undo
-	
-	
-	Nuevo archivo
-	Nueva carpeta
-	
-	Buscar
-	
-	Articles (List View)
-	File Tree (Tree View)
-	
-	Renombrar
-	Duplicar
-	
-	Eliminar
-	
-	Properties
-	Copiar ruta de archivo
-	Abrir ubicación del archivo
-	
-	Expand All
-	Collapse All
-
-
-
-	Abrir
-	Abrir
-	
-	Abrir
-
-
-	
-	
-	
-	
-	
-	
-		
-			
-				
-					
-				
-				
-					
-						
-					
-					
-							
-									
-							
-					
-				
-				
-				
-			
-		
-	
-
-
-
-	
-	
-	
