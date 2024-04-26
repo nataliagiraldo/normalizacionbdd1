@@ -1,5 +1,280 @@
 ![image](https://github.com/nataliagiraldo/normalizacionbdd1/assets/131258170/1d5a8fc8-5969-49f9-a04a-c2876007dda5)
 
+DDL
+
+CREATE TABLE pais(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE region(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    id_pais INT NOT NULL,
+    CONSTRAINT FK_id_pais FOREIGN KEY(id_pais) REFERENCES pais(id)
+);
+
+CREATE TABLE ciudad(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    id_region INT NOT NULL,
+    CONSTRAINT FK_id_region FOREIGN KEY(id_region) REFERENCES region(id)
+);
+
+CREATE TABLE direccion(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    calle VARCHAR(100),
+    carrera VARCHAR(100),
+    numero VARCHAR(100),
+    postal VARCHAR(10),
+    id_ciudad INT NOT NULL,
+    CONSTRAINT FK_id_ciudad FOREIGN KEY(id_ciudad) REFERENCES ciudad(id)
+);
+
+CREATE TABLE oficina(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_direccion INT,
+    telefono INT,
+    CONSTRAINT FK_id_direccion_oficina FOREIGN KEY(id_direccion) REFERENCES direccion(id)
+);
+
+CREATE TABLE empleado(
+    id INT NOT NULL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellido1 VARCHAR(100) NOT NULL,
+    apellido2 VARCHAR(100),
+    extension INT NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    jefe INT,
+    id_oficina INT,
+    CONSTRAINT FK_id_jefe FOREIGN KEY(jefe) REFERENCES empleado(id),
+    CONSTRAINT FK_id_oficina_empleado FOREIGN KEY(id_oficina) REFERENCES oficina(id)
+);
+
+CREATE TABLE puesto(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE cliente(
+    id INT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    fax VARCHAR(100) NOT NULL,
+    id_direccion INT,
+    id_empleado INT,
+   
+    CONSTRAINT FK_id_direccion_cliente FOREIGN KEY(id_direccion) REFERENCES direccion(id),
+    CONSTRAINT FK_id_empleado FOREIGN KEY(id_empleado) REFERENCES empleado(id)
+);
+
+CREATE TABLE proveedor(
+    nit INT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE tipo_telefono(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    descripcion VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE telefono(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    numero INT NOT NULL,
+    prefijo INT NOT NULL,
+    id_tipo_telefono INT NOT NULL,
+    id_cliente INT NOT NULL, -- Añadí esta línea para la referencia a la tabla cliente
+    CONSTRAINT FK_id_tipo_telefono FOREIGN KEY(id_tipo_telefono) REFERENCES tipo_telefono(id),
+    CONSTRAINT FK_id_cliente FOREIGN KEY(id_cliente) REFERENCES cliente(id)
+);
+
+
+CREATE TABLE tipo_pago(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    descripcion VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE pago(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    fecha DATE NOT NULL,
+    total DOUBLE NOT NULL,
+    id_cliente INT NOT NULL,
+    id_tipo_pago INT NOT NULL,
+    CONSTRAINT FK_id_cliente_pago FOREIGN KEY(id_cliente) REFERENCES cliente(id),
+    CONSTRAINT FK_id_tipo_pago_pago FOREIGN KEY(id_tipo_pago) REFERENCES tipo_pago(id)
+);
+
+CREATE TABLE contacto(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    id_cliente INT,
+    CONSTRAINT FK_id_cliente_contacto FOREIGN KEY(id_cliente) REFERENCES cliente(id)
+);
+
+CREATE TABLE estado_pedido(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    descripcion VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE gama_producto(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    descripcion_txt VARCHAR(200) NOT NULL,
+    descripcion_html VARCHAR(200) NOT NULL,
+    imagen VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE dimensiones(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    largo INT NOT NULL,
+    ancho INT NOT NULL,
+    alto INT
+);
+
+CREATE TABLE producto(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion VARCHAR(200),
+    precio_venta DOUBLE NOT NULL,
+    precio_compra DOUBLE,
+    id_gama_producto INT NOT NULL,
+    id_dimensiones INT,
+    nit_proveedor INT,
+    CONSTRAINT FK_id_gama_producto FOREIGN KEY(id_gama_producto) REFERENCES gama_producto(id),
+    CONSTRAINT FK_id_dimensiones FOREIGN KEY(id_dimensiones) REFERENCES dimensiones(id),
+    CONSTRAINT FK_nit_proveedor_producto FOREIGN KEY(nit_proveedor) REFERENCES proveedor(nit)
+);
+
+CREATE TABLE inventario(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    stock INT NOT NULL,
+    id_producto INT NOT NULL,
+    CONSTRAINT FK_id_producto_inventario FOREIGN KEY(id_producto) REFERENCES producto(id)
+);
+
+CREATE TABLE pedido(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    fecha_pedido DATE NOT NULL,
+    fecha_esperada DATE NOT NULL,
+    fecha_entrega DATE,
+    id_estado_pedido INT NOT NULL,
+    id_cliente INT NOT NULL,
+    CONSTRAINT FK_id_estado_pedido_pedido FOREIGN KEY(id_estado_pedido) REFERENCES estado_pedido(id),
+    CONSTRAINT FK_id_cliente_pedido FOREIGN KEY(id_cliente) REFERENCES cliente(id)
+);
+
+CREATE TABLE detalle_pedido(
+    id_producto INT NOT NULL,
+    id_pedido INT NOT NULL,
+    cantidad INT NOT NULL,
+    precio_unidad DOUBLE NOT NULL,
+    numero_linea INT NOT NULL,
+    PRIMARY KEY(id_producto, id_pedido),
+    CONSTRAINT FK_id_producto_detalle_pedido FOREIGN KEY(id_producto) REFERENCES producto(id),
+    CONSTRAINT FK_id_pedido_detalle_pedido FOREIGN KEY(id_pedido) REFERENCES pedido(id)
+);
+
+CREATE TABLE comentarios(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_pedido INT NOT NULL,
+    contenido VARCHAR(50),
+    CONSTRAINT FK_id_pedido_comentarios FOREIGN KEY(id_pedido) REFERENCES pedido(id)
+);
+
+DML
+
+-- Inserts para la tabla pais
+INSERT INTO pais (nombre) VALUES ('España'), ('Francia'), ('Italia');
+
+-- Inserts para la tabla region
+INSERT INTO region (nombre, id_pais) VALUES 
+('Madrid', 1), ('Barcelona', 1), ('París', 2), ('Marsella', 2), ('Roma', 3), ('Milán', 3);
+
+-- Inserts para la tabla ciudad
+INSERT INTO ciudad (nombre, id_region) VALUES 
+('Madrid', 1), ('Barcelona', 2), ('París', 3), ('Marsella', 4), ('Roma', 5), ('Milán', 6);
+
+-- Inserts para la tabla direccion
+INSERT INTO direccion (calle, carrera, numero, postal, id_ciudad) VALUES 
+('Calle Mayor', 'Avinguda Diagonal', '123', '28001', 1),
+('Calle de Paris', 'Rue de Rivoli', '45', '75001', 3),
+('Via Roma', 'Corso Buenos Aires', '10', '00100', 5);
+
+-- Inserts para la tabla oficina
+INSERT INTO oficina (id_direccion) VALUES (1), (2), (3);
+
+-- Inserts para la tabla empleado
+INSERT INTO empleado (id, nombre, apellido1, apellido2, extension, email, jefe, id_oficina) VALUES 
+(1, 'Juan', 'Pérez', 'García', 101, 'juan.perez@example.com', NULL, 1),
+(2, 'María', 'López', 'Martínez', 102, 'maria.lopez@example.com', 1, 2),
+(3, 'Carlos', 'González', 'Fernández', 103, 'carlos.gonzalez@example.com', 1, 1);
+
+-- Inserts para la tabla puesto
+INSERT INTO puesto (nombre) VALUES ('Gerente'), ('Asistente'), ('Recepcionista');
+
+-- Inserts para la tabla cliente
+INSERT INTO cliente (id, nombre, fax, id_direccion, id_empleado) VALUES 
+(1, 'Cliente 1', '123456789', 1, 2),
+(2, 'Cliente 2', '987654321', 2, 3),
+(3, 'Cliente 3', '555555555', 3, 1);
+
+-- Inserts para la tabla proveedor
+INSERT INTO proveedor (nit, nombre) VALUES (123456789, 'Proveedor 1'), (987654321, 'Proveedor 2');
+
+-- Inserts para la tabla tipo_telefono
+INSERT INTO tipo_telefono (descripcion) VALUES ('Móvil'), ('Fijo');
+
+-- Inserts para la tabla telefono
+INSERT INTO telefono (numero, prefijo, id_tipo_telefono, id_cliente) VALUES 
+(666666666, 34, 1, 1), (555555555, 34, 2, 2), (444444444, 34, 1, 3);
+
+-- Inserts para la tabla tipo_pago
+INSERT INTO tipo_pago (descripcion) VALUES ('Tarjeta de crédito'), ('Transferencia bancaria');
+
+-- Inserts para la tabla pago
+INSERT INTO pago (fecha, total, id_cliente, id_tipo_pago) VALUES 
+('2023-01-15', 100.50, 1, 1), ('2023-02-20', 200.75, 2, 2), ('2023-03-10', 150.25, 3, 1);
+
+-- Inserts para la tabla contacto
+INSERT INTO contacto (nombre, apellido, id_cliente) VALUES 
+('Contacto 1', 'Apellido 1', 1), ('Contacto 2', 'Apellido 2', 2), ('Contacto 3', 'Apellido 3', 3);
+
+-- Inserts para la tabla estado_pedido
+INSERT INTO estado_pedido (descripcion) VALUES ('En proceso'), ('Entregado'), ('Cancelado');
+
+-- Inserts para la tabla gama_producto
+INSERT INTO gama_producto (descripcion_txt, descripcion_html, imagen) VALUES 
+('Electrodomésticos', 'Electrodomésticos', 'electrodomesticos.jpg'), 
+('Muebles', 'Muebles', 'muebles.jpg'), 
+('Electrónica', 'Electrónica', 'electronica.jpg');
+
+-- Inserts para la tabla dimensiones
+INSERT INTO dimensiones (largo, ancho, alto) VALUES (100, 50, 70), (80, 40, 60), (120, 60, 80);
+
+-- Inserts para la tabla producto
+INSERT INTO producto (nombre, descripcion, precio_venta, precio_compra, id_gama_producto, id_dimensiones, nit_proveedor) VALUES 
+('Lavadora', 'Lavadora de carga frontal', 500.00, 400.00, 1, 1, 123456789),
+('Sofá', 'Sofá de tres plazas', 600.00, 450.00, 2, 2, 987654321),
+('Smartphone', 'Teléfono inteligente', 700.00, 550.00, 3, 3, 123456789);
+
+-- Inserts para la tabla inventario
+INSERT INTO inventario (stock, id_producto) VALUES (50, 1), (30, 2), (20, 3);
+
+-- Inserts para la tabla pedido
+INSERT INTO pedido (fecha_pedido, fecha_esperada, fecha_entrega, id_estado_pedido, id_cliente) VALUES 
+('2023-01-01', '2023-01-10', NULL, 1, 1),
+('2023-02-01', '2023-02-10', NULL, 1, 2),
+('2023-03-01', '2023-03-10', '2023-03-05', 2, 3);
+
+-- Inserts para la tabla detalle_pedido
+INSERT INTO detalle_pedido (id_producto, id_pedido, cantidad, precio_unidad, numero_linea) VALUES 
+(1, 1, 2, 250.00, 1),
+(2, 2, 1, 600.00, 1),
+(3, 3, 3, 700.00, 1);
+
+-- Inserts para la tabla comentarios
+INSERT INTO comentarios (id_pedido, contenido) VALUES (1, 'Pedido en espera'), (3, 'Pedido entregado con éxito');
+
+
 Para normalizar una base de datos hasta la Cuarta Forma Normal (4FN), es importante comprender los conceptos y reglas de cada forma normal y aplicarlos a cada tabla de la base de datos. A continuación, voy a expandir la información proporcionada sobre cada entidad y explicar cómo se puede aplicar la normalización:
 
 1. Tabla "País":
